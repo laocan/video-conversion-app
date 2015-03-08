@@ -1,11 +1,12 @@
 Video Conversion App
 ====================
 
-Web application that converts video file formats using a RESTful API available at [felipead/video-conversion-service](http://github.com/felipead/video-conversion-service).
+Example web application for my [Video Conversion Service](http://github.com/felipead/video-conversion-service) RESTful API.
 
-A demo version is deployed to heroku at [video-conversion-app.herokuapp.com](https://video-conversion-app.herokuapp.com)
+A demo version is deployed [here](https://video-conversion-app.herokuapp.com).
 
 Requirements
 ------------
 
- - [jQuery REST Client](https://github.com/jpillora/jquery.rest)
+ - [jQuery REST Client](https://github.com/jpillora/jquery.rest).
+ - [XDomain](https://github.com/jpillora/xdomain) for cross-domain requests.
