@@ -1,9 +1,12 @@
 node_modules/
 bower_components/
-*.log
 
+*.log
 build/
 dist/
 
 # Jetbrains WebStorm
 .idea/
+
+# Custom bower library directory
+public/vendor
