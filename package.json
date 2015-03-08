@@ -1,6 +1,6 @@
 {
-  "name": "Video Conversion App",
-  "description": "Example web application to consume http://github.com/felipead/video-conversion-service RESTful API",
+  "name": "video-conversion-app",
+  "description": "Example web application to consume a video conversion RESTful API available at http://github.com/felipead/video-conversion-service",
   "repository": {
     "type": "git",
     "url": "git://github.com/felipead/video-conversion-app.git"
