@@ -1,7 +1,8 @@
 {
   "name": "video-conversion-app",
-  "version": "1.0.0",
+  // "version": "1.0.0",
   "description": "Video Conversion App",
+  "repository": "http://github.com/felipead/video-conversion-app",
   "dependencies": {
     "harp": "*"
   },
