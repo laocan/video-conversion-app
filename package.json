@@ -1,7 +1,10 @@
 {
-  "name": "video-conversion-app",
-  "description": "Video Conversion App",
-  "repository": "http://github.com/felipead/video-conversion-app",
+  "name": "Video Conversion App",
+  "description": "Example web application to consume http://github.com/felipead/video-conversion-service RESTful API",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/felipead/video-conversion-app.git"
+  },
   "dependencies": {
     "harp": "*"
   },
