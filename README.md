@@ -1,7 +1,7 @@
 Video Conversion App
 ====================
 
-Example web application for the [video-conversion-service](http://github.com/felipead/video-conversion-service) RESTful API.
+Example web application for my [video-conversion-service](http://github.com/felipead/video-conversion-service) RESTful API.
 
 A demo version is deployed [here](https://video-conversion-app.herokuapp.com).
 
