@@ -1,0 +1,12 @@
+{
+  "name": "video-conversion-app",
+  "version": "1.0.0",
+  "description": "Video Conversion App",
+  "dependencies": {
+    "harp": "*"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
+}
