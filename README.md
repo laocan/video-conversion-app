@@ -21,8 +21,8 @@ Setup
 
  - Install required dependencies through npm:
 
-    npm install
+        npm install
 
  - Start Harp:
 
-    harp server
+        harp server
