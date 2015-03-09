@@ -9,4 +9,4 @@ dist/
 .idea/
 
 # Custom bower library directory
-vendor
+public/vendor
