@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="app" flow-init>
+<head>
+    <title>Video Converter</title>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/ng-flow/dist/ng-flow-standalone.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body flow-prevent-drop
+      flow-drag-enter="style={border: '5px solid green'}"
+      flow-drag-leave="style={}"
+      ng-style="style">
+<div class="container">
+    <h1>Video Converter</h1>
+    <hr class="soften"/>
+
+    <div flow-init="{target: 'https://video-conversion-service.herokuapp.com/v1/video-upload'}"
+         flow-files-submitted="$flow.upload()"
+         flow-file-success="$file.msg = $message">
+
+        <span class="btn" flow-btn>Upload</span>
+
+        <table>
+            <tr ng-repeat="file in $flow.files">
+                <td>{{$index+1}}</td>
+                <td>{{file.name}}</td>
+                <td>{{file.msg}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
