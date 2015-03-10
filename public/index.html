@@ -48,9 +48,9 @@
     <div ng-show="showConvertedVideo">
         <p>Converted video is uploaded to Amazon S3: <a ng-href="{{convertedVideoUri}}">{{convertedVideoUri}}</a></p>
         <hr class="soften"/>
-        <video ng-src="{{convertedVideoUri}}">
-            Your browser does not support the video tag. Please download latest Chrome or Firefox.
-        </video>
+    </div>
+    <div ng-show="showConvertedVideo">
+        <video ng-src="{{convertedVideoUri}}" controls></video>
     </div>
 
 </div>
