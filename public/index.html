@@ -17,24 +17,29 @@
 <div class="container">
 
     <h1>Video Converter</h1>
-    [<a href="http://github.com/felipead/video-conversion-app">source code</a>]
+    <p>Converts video and audio files in any format to MP4 H.264, which is suitable for HTML5 web streaming.
+        [<a href="http://github.com/felipead/video-conversion-app">source code</a>]</p>
 
+    <p><em>Only files smaller than 100MB are supported at the moment.</em></p>
+
+    <p>Please don't upload any sensitive or confidential videos. Use it at your own risk.</p>
     <hr class="soften"/>
 
-    <div style="margin-bottom: 30px;">
-        <span class="btn btn-primary btn-file">
-            Select Video File <input type="file" nv-file-select uploader="uploader"/>
-        </span>
-    </div>
-
-    <div ng-show="showUploadProgress">
-        Upload progress:
-        <div class="progress" style="">
-            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+    <div>
+        <div style="margin-bottom: 30px;">
+            <span class="btn btn-primary btn-file">
+                Select Video File <input type="file" nv-file-select uploader="uploader"/>
+            </span>
         </div>
-    </div>
 
-    <hr class="soften"/>
+        <div ng-show="showUploadProgress">
+            Upload progress:
+            <div class="progress" style="">
+                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+            </div>
+        </div>
+        <hr class="soften"/>
+    </div>
 
     <div ng-show="showUploadedVideoMessage">
         <p>Original video file uploaded to Amazon S3: <a ng-href="{{uploadedVideoUri}}">{{uploadedVideoUri}}</a></p>
