@@ -1,6 +1,9 @@
 "use strict";
 
-angular.module("app", ["angularFileUpload"])
+angular
+
+    .module("app", ["angularFileUpload"])
+
     .controller("AppController", function ($scope, $log, $http, $interval, FileUploader, service) {
 
         var uploader = $scope.uploader = new FileUploader({
@@ -10,9 +13,10 @@ angular.module("app", ["angularFileUpload"])
 
         uploader.onSuccessItem = function (fileItem, response) {
             var inputVideoId = response["id"];
+            var inputVideoUri = response["uri"];
 
             $scope.showUploadedVideoMessage = true;
-            $scope.uploadedVideoUri = response["uri"];
+            $scope.uploadedVideoUri = inputVideoUri;
 
             service.createVideoConversion({
                 inputVideoId: inputVideoId,
@@ -26,7 +30,7 @@ angular.module("app", ["angularFileUpload"])
                     $scope.outputVideoId = response.data.outputVideoId;
                 },
                 function (error) {
-                    $log.error("could not create video conversion.", error);
+                    $log.error("could not create video conversion job.", error);
                 });
 
             var promise = $interval(function() {
@@ -35,9 +39,11 @@ angular.module("app", ["angularFileUpload"])
                         $scope.videoConversionStatus = response.data.status;
                         $scope.videoConversionProgress = response.data.progress;
                         $scope.outputVideoId = response.data.outputVideoId;
-                        if ($scope.videoConversionStatus == "finished" || $scope.videoConversionStatus == "cancelled" || $scope.videoConversionStatus == "failed") {
+
+                        var status = $scope.videoConversionStatus;
+                        if (status == "finished" || status == "cancelled" || status == "failed") {
                             $interval.cancel(promise);
-                            if ($scope.videoConversionStatus == "finished") {
+                            if (status == "finished") {
                                 service.getVideo($scope.outputVideoId).then(
                                     function (response) {
                                         $scope.showConvertedVideo = true;
@@ -49,17 +55,14 @@ angular.module("app", ["angularFileUpload"])
                                 );
                             }
                         }
-                        $log.error("loop");
                     },
                     function (error) {
-                        $log.error("could not get video conversion.", error);
+                        $log.error("could not get video conversion job.", error);
                     });
             }, 1000);
-
-
-
         }
     })
+
     .factory("service", function ($http) {
         return {
             getVideo: function (id) {
