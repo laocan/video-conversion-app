@@ -11,15 +11,14 @@ Requirements
  - [npm](https://www.npmjs.com)
  - [Bower](http://bower.io)
  - [Harp](http://harpjs.com)
- - [flow.js](https://github.com/flowjs/flow.js)
- - cujoJS [rest](https://github.com/cujojs/rest)
+ - [AngularJS](https://angularjs.org)
 
 Setup
 -----
 
  - Install [npm](https://www.npmjs.com) following the instructions at the project website.
 
- - Install required dependencies through npm:
+ - Install required dependencies through npm (npm will install bower and its dependencies automatically):
 
         npm install
 
