@@ -2,6 +2,7 @@
 <html ng-app="app">
 <head>
     <title>Video Converter</title>
+
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/angular-file-upload/angular-file-upload.min.js"></script>
@@ -24,15 +25,11 @@
         </span>
     </div>
 
-    <div style="margin-bottom: 40px">
+    <div>
         Upload progress:
         <div class="progress" style="">
             <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
         </div>
-        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()"
-                ng-disabled="!uploader.isUploading">
-            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-        </button>
         <hr class="soften"/>
     </div>
 
@@ -41,10 +38,21 @@
         <hr class="soften"/>
     </div>
 
-    <div ng-show="showUploadedVideoMessage">
-        <p>Original video file uploaded to Amazon S3: <a ng-href="{{uploadedVideoUri}}">{{uploadedVideoUri}}</a></p>
+    <div ng-show="showVideoConversion">
+        <p>Video conversion job id {{videoConversionId}}</p>
+        <p>Status: {{videoConversionStatus}}</p>
+        <p>Progress: {{videoConversionProgress}}</p>
         <hr class="soften"/>
     </div>
+
+    <div ng-show="showConvertedVideo">
+        <p>Converted video is uploaded to Amazon S3: <a ng-href="{{convertedVideoUri}}">{{convertedVideoUri}}</a></p>
+        <hr class="soften"/>
+        <video ng-src="{{convertedVideoUri}}">
+            Your browser does not support the video tag. Please download latest Chrome or Firefox.
+        </video>
+    </div>
+
 </div>
 </body>
 </html>
