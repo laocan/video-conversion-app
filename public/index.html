@@ -1,33 +1,49 @@
 <!DOCTYPE html>
-<html ng-app="app" flow-init>
+<html ng-app="app">
 <head>
     <title>Video Converter</title>
-    <script src="vendor/angular/angular.min.js"></script>
-    <script src="vendor/ng-flow/dist/ng-flow-standalone.min.js"></script>
-    <script src="app.js"></script>
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-file-upload/angular-file-upload.min.js"></script>
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
 </head>
-<body flow-prevent-drop
-      flow-drag-enter="style={border: '5px solid green'}"
-      flow-drag-leave="style={}"
-      ng-style="style">
+
+<body ng-controller="AppController">
 <div class="container">
+
     <h1>Video Converter</h1>
     <hr class="soften"/>
 
-    <div flow-init="{target: 'https://video-conversion-service.herokuapp.com/v1/video-upload'}"
-         flow-files-submitted="$flow.upload()"
-         flow-file-success="$file.msg = $message">
+    <div style="margin-bottom: 40px">
+        <span class="btn btn-primary btn-file">
+            Select Video File <input type="file" nv-file-select uploader="uploader"/>
+        </span>
+    </div>
 
-        <span class="btn" flow-btn>Upload</span>
+    <div style="margin-bottom: 40px">
+        Upload progress:
+        <div class="progress" style="">
+            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+        </div>
+        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()"
+                ng-disabled="!uploader.isUploading">
+            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+        </button>
+        <hr class="soften"/>
+    </div>
 
-        <table>
-            <tr ng-repeat="file in $flow.files">
-                <td>{{$index+1}}</td>
-                <td>{{file.name}}</td>
-                <td>{{file.msg}}</td>
-            </tr>
-        </table>
+    <div ng-show="showUploadedVideoMessage">
+        <p>Original video file uploaded to Amazon S3: <a ng-href="{{uploadedVideoUri}}">{{uploadedVideoUri}}</a></p>
+        <hr class="soften"/>
+    </div>
+
+    <div ng-show="showUploadedVideoMessage">
+        <p>Original video file uploaded to Amazon S3: <a ng-href="{{uploadedVideoUri}}">{{uploadedVideoUri}}</a></p>
+        <hr class="soften"/>
     </div>
 </div>
 </body>

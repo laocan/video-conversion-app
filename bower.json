@@ -17,10 +17,9 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.2",
+    "bootstrap": "~3",
     "normalize.css": "~3",
-    "ng-flow": "~2",
-    "angular": "~1.3",
-    "angular-resource": "~1.3"
+    "angular-file-upload": "~1",
+    "angular": "~1"
   }
 }
