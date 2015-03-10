@@ -4,7 +4,7 @@ angular
 
     .module("app", ["angularFileUpload"])
 
-    .controller("AppController", function ($scope, $log, $http, $interval, service, FileUploader) {
+    .controller("AppController", function ($scope, $log, $http, $interval, $sce, service, FileUploader) {
 
         var uploader = $scope.uploader = new FileUploader({
             url: "https://video-conversion-service.herokuapp.com/v1/video-upload",
@@ -63,7 +63,7 @@ angular
                     service.getVideo($scope.outputVideoId).then(
                         function (response) {
                             $scope.showConvertedVideo = true;
-                            $scope.convertedVideoUri = response.data.uri;
+                            $scope.convertedVideoUri = $sce.trustAsResourceUrl(response.data.uri);
                         },
                         function (error) {
                             $log.error("could not get video.", error);
