@@ -1,5 +1,9 @@
 "use strict";
 
+function serviceUrl(path) {
+    return "https://video-conversion-service.herokuapp.com/v1/" + path
+}
+
 angular
 
     .module("app", ["angularFileUpload"])
@@ -7,7 +11,7 @@ angular
     .controller("AppController", function ($scope, $log, $http, $interval, $sce, service, FileUploader) {
 
         var uploader = $scope.uploader = new FileUploader({
-            url: "https://video-conversion-service.herokuapp.com/v1/video-upload",
+            url: serviceUrl("video-upload"),
             autoUpload: true,
             removeAfterUpload: true
         });
@@ -57,19 +61,19 @@ angular
                         $log.error("could not get video conversion job.", error);
                     });
             }, 1000);
+        };
 
-            function onVideoConversionFinished(status) {
-                if (status == "finished") {
-                    service.getVideo($scope.outputVideoId).then(
-                        function (response) {
-                            $scope.showConvertedVideo = true;
-                            $scope.convertedVideoUri = $sce.trustAsResourceUrl(response.data.uri);
-                        },
-                        function (error) {
-                            $log.error("could not get video.", error);
-                        }
-                    );
-                }
+        function onVideoConversionFinished(status) {
+            if (status == "finished") {
+                service.getVideo($scope.outputVideoId).then(
+                    function (response) {
+                        $scope.showConvertedVideo = true;
+                        $scope.convertedVideoUri = $sce.trustAsResourceUrl(response.data.uri);
+                    },
+                    function (error) {
+                        $log.error("could not get video.", error);
+                    }
+                );
             }
         }
     })
@@ -77,13 +81,13 @@ angular
     .factory("service", function ($http) {
         return {
             getVideo: function (id) {
-                return $http.get("https://video-conversion-service.herokuapp.com/v1/videos/" + id)
+                return $http.get(serviceUrl("videos/" + id))
             },
             getVideoConversion: function (id) {
-                return $http.get("https://video-conversion-service.herokuapp.com/v1/video-conversions/" + id)
+                return $http.get(serviceUrl("video-conversions/" + id))
             },
             createVideoConversion: function (payload) {
-                return $http.post("https://video-conversion-service.herokuapp.com/v1/video-conversions", payload)
+                return $http.post(serviceUrl("video-conversions"), payload)
             }
         }
     });
